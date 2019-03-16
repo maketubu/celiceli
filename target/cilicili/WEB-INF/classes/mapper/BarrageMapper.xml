@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clive.mapper.BarrageMapper">
+    <!--//保存弹幕-->
+    <insert id="saveBarrage" parameterType="com.clive.bean.Barrage">
+        insert into barrage(videoId,text,time,color,size,position)values(#{videoId},#{text},#{time},#{color},#{size},#{position})
+    </insert>
+    <select id="selectAllBarrageByVideoId" parameterType="int" resultType="com.clive.bean.Barrage">
+        select * from barrage where videoId = #{videoId}
+    </select>
+</mapper>

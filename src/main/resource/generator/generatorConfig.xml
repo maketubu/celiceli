@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动,要对应自己的mysql-connector—java包的版本-->
+    <classPathEntry location="C:\Users\邓湘川\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 这里是是否去掉注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/cilicili?nullCatalogMeansCurrent=true&amp;serverTimezone=UTC&amp;userUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false" userId="root"
+                        password="dxc123456">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成类的存放位置在src目录下，我的具体包为cn.edu.jlu.discuss-->
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.clive.model" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resource">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.clive.mapper" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--数据库中的表生成对应的类-->
+        <table tableName="article_Entity" domainObjectName="ArticleEntity">
+            <!--设置主键-->
+            <generatedKey column="articleId" sqlStatement="MYSQL" identity="true"/>
+        </table>
+        <table tableName="article_Reply" domainObjectName="ArticleReplyEntity">
+            <generatedKey column="replyId" sqlStatement="MYSQL" identity="true"/>
+        </table>
+        <table tableName="user" domainObjectName="User">
+            <generatedKey column="userID" sqlStatement="MYSQL" identity="true"/>
+        </table>
+        <table tableName="video_Entity" domainObjectName="VideoEntity">
+            <generatedKey column="videoID" sqlStatement="MYSQL" identity="true"/>
+        </table>
+        <table tableName="video_Message_Entity" domainObjectName="VideoMessageEntity">
+            <generatedKey column="messageID" sqlStatement="MYSQL" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clive.mapper.VideoMessageEntityMapper" >
+    <!--根据回复id查询当前视频的所有留言-->
+    <select id="videoReplyListByid" parameterType="String" resultType="com.clive.bean.VideoMessageEntity">
+        select * from video_message_entity
+          where messageVideoID = #{id}
+    </select>
+    <!--保存留言-->
+    <insert id="saveVideoReply" parameterType="com.clive.bean.VideoMessageEntity">
+        insert into video_message_entity(messageID,messageVideoID,
+        messageUserID,messageUserName,messageContent,messageTime,messageHeadPic)
+          values (#{messageID},#{messageVideoID},#{messageUserID},#{messageUserName},
+          #{messageContent},#{messageTime},#{messageHeadPic})
+    </insert>
+</mapper>

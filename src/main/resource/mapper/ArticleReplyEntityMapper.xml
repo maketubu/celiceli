@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clive.mapper.ArticleReplyEntityMapper" >
+    <!--保存帖子回复-->
+    <insert id="saveArticleReply" parameterType="com.clive.bean.ArticleEntity">
+        insert into article_reply(replyId,replyContent,
+        replyTime,replyHeadPic,replyArticleId,replyName)
+        values (#{replyId},#{replyContent},#{replyTime},#{replyHeadPic},#{replyArticleId},#{replyName})
+    </insert>
+    <!--根据帖子id返回该帖子的所有留言-->
+    <select id="articleReplyListById" parameterType="String" resultType="com.clive.bean.ArticleReplyEntity">
+        select * from article_reply
+          where replyArticleId = #{id}
+    </select>
+
+</mapper>

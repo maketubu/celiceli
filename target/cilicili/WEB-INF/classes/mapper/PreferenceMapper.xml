@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clive.mapper.PreferenceMapper">
+    <update id="updataDonghua" parameterType="String">
+        update preference set donghua=donghua+1 where userName= #{userName};
+    </update>
+    <update id="updataMad" parameterType="String">
+        update preference set mad=mad+1 where userName= #{userName};
+    </update>
+    <update id="updataDongman" parameterType="String">
+        update preference set dongman=dongman+1 where userName= #{userName};
+    </update>
+    <insert id="insertUserPreference" parameterType="String" >
+        insert into preference(userName)
+        VALUES (#{userName})
+    </insert>
+    <select id="selectPreferenceInfo" parameterType="String" resultType="com.clive.bean.Preference">
+        select * from preference where userName = #{userName}
+    </select>
+
+</mapper>

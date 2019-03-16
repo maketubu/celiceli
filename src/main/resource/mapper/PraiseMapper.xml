@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clive.mapper.PraiseMapper">
+    <select id="selectPraiseRecord" resultType="int">
+        select count(*) from praise
+        where videoId = #{0} and user = #{1}
+    </select>
+    <insert id="insertPraiseRecord" parameterType="com.clive.bean.Praise">
+        insert into praise(videoId,user,greateTime)values(#{lookId},#{user},#{creatTime})
+    </insert>
+    <delete id="deletePraiseRecord">
+        delete from praise where videoId = #{0} and user = #{1}
+    </delete>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clive.mapper.VideoEntityMapper">
+    <!-- 根据video类别返回列表-->
+    <select id="videoListByType" parameterType="String" resultType="com.clive.bean.VideoEntity">
+        select * from video_entity
+          where videoType = #{type}
+    </select>
+    <!--根据类别计算视频数-->
+    <select id="videoCountByType" parameterType="String" resultType="int">
+        select count(*) from video_entity
+          where videoType = #{type}
+    </select>
+    <!--保存视频-->
+    <insert id="saveVideo" parameterType="com.clive.bean.VideoEntity">
+        insert into video_entity(videoID,videoName,videoImage,
+        videoAddress,videolookTime,videoCollection,videoLeaving,videoTime,videoState,videoType,recordOfPraise, vip)
+          values (#{videoID},#{videoName},#{videoImage},
+          #{videoAddress},#{videolookTime},#{videoCollection}
+          ,#{videoLeaving},#{videoTime},#{videoState},#{videoType},#{recordOfPraise}, #{vip})
+    </insert>
+    <!-- 随机获取视频列表-->
+    <select id="videoListRandom7MAD" resultType="com.clive.bean.VideoEntity">
+        select * from video_entity order by rand() limit 7
+    </select>
+    <select id="videoListRandom6MAD" resultType="com.clive.bean.VideoEntity">
+        select * from video_entity order by rand() limit 6
+    </select>
+    <select id="videoListRandom5MAD" resultType="com.clive.bean.VideoEntity">
+        select * from video_entity order by rand() limit 5
+    </select>
+    <!--//根据视频id查询浏览次数-->
+    <select id="selectVideoLookTime" parameterType="String" resultType="int">
+        SELECT videolookTime FROM video_entity where videoId = #{videoId}
+    </select>
+    <!--//更新视频的浏览次数-->
+    <update id="updataVideoLookTime" >
+        update video_entity set videoLookTime=#{1} where videoId=#{0}
+    </update>
+    <!--//更加id查询视频点赞数-->
+    <!--public int selectPraiseNum();-->
+    <select id="selectPraiseNum" parameterType="String" resultType="int">
+        select recordOfPraise FROM video_entity where videoID = #{videoId}
+    </select>
+    <!--更新视频点赞数量-->
+    <update id="updataPraiseNum">
+         update video_entity set recordOfPraise=#{1} where videoId=#{0}
+    </update>
+    <select id="selectVideoType" parameterType="String" resultType="int">
+        select videoType FROM video_entity where videoID = #{videoID}
+    </select>
+    <select id="selectVip" parameterType="String" resultType="int">
+        select vip from video_entity where videoId=#{videoId}
+    </select>
+
+</mapper>
